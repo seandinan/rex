@@ -13,6 +13,8 @@ var http = require('http');
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+console.log('\x1b[34m%s\x1b[0m', '[ running on port: ' + port + ' ]');
+
 /**
  * Create HTTP server.
  */
