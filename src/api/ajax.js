@@ -1,6 +1,3 @@
-import Promise from 'bluebird';
-
-
 const Ajax = (params) => {
 	/*
 	 Params: {method[str], action[str], headers[obj], body[obj], onProgress[fxn]}

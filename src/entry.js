@@ -1,19 +1,9 @@
+import 'preact/debug';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Router, IndexRoute, Route, browserHistory, Link, IndexRedirect } from 'react-router';
-
-const container = (props) => (
-	<div>
-		{props.children}
-	</div>
-);
-
-const error = () => (
-	<div style={{marginTop: '5%', textAlign: 'center'}}>
-		Whoops! Took a wrong turn.<br />
-		<Link to="/">Let's go home.</Link>
-	</div>
-);
+import { render as ReactDOMRender } from 'preact-compat';
+import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 /* REPLACE WITH YOUR INDEX ROUTE */
 const Placeholder = () => (
@@ -22,17 +12,15 @@ const Placeholder = () => (
 	</div>
 );
 
-const Routing = () => (
-	<Router history={browserHistory}>
-		<Route path="/" component={container}>
-			 <IndexRoute component={Placeholder} />
-		</Route>
-
-		<Route path="*" component={error} />
-	</Router>
+const Routing = ({ store }) => (
+	<Provider store={store}>
+		<BrowserRouter>
+			<Switch>
+				<Route path="/" component={Placeholder} />
+				<Redirect to="/" />
+			</Switch>
+		</BrowserRouter>
+	</Provider>
 );
 
-ReactDOM.render(<Routing />, document.getElementById('app'));
-
-
-
+ReactDOMRender(<Routing store={store} />, document.getElementById('app'));
