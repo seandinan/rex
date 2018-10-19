@@ -16,7 +16,7 @@ module.exports = [
 
 		devtool: NODE_ENV === 'production' ? false : 'eval',
 
-		entry: { dashboard: [ '@babel/polyfill', './entry.js' ] },
+		entry: { app: [ '@babel/polyfill', './entry.js' ] },
 
 		output: {
 			path: path.resolve(__dirname, '../public/js'),
